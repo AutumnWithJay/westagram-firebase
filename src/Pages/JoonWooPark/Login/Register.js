@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { authService } from '../../../firebase';
+import { Link, Redirect } from 'react-router-dom';
+import { authService, firebaseInstance } from '../../../firebase';
 import './Register.scss';
 
 class Register extends React.Component {
@@ -12,6 +12,7 @@ class Register extends React.Component {
       inputNickname: '',
       inputPassword: '',
       isDisabled: false,
+      redirect: false,
     };
   }
 
@@ -53,14 +54,32 @@ class Register extends React.Component {
     }
   };
 
+  onSocialRegister = async () => {
+    const provider = new firebaseInstance.auth.GoogleAuthProvider();
+    await authService.signInWithPopup(provider);
+    this.setState({ redirect: true });
+  };
+
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to="/" />;
+    }
+  };
+
   render() {
     return (
       <div className="JoonWooPark_Register">
+        {this.renderRedirect()}
         <main>
           <section className="register-container">
             <h3 className="register-title">Westagram</h3>
             <span>친구들의 사진과 동영상을 보려면 가입하세요.</span>
-            <button className="register-button active">Google로 로그인</button>
+            <button
+              className="register-button active"
+              onClick={this.onSocialRegister}
+            >
+              Google로 로그인
+            </button>
             <div className="register-divide">
               <div className="register-divide-line-first"></div>
               <div className="register-divide-text">또는</div>
