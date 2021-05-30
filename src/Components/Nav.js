@@ -1,16 +1,11 @@
 import React from 'react';
 import './Nav.scss';
-<<<<<<< HEAD
-
-class Nav extends React.Component {}
-
-=======
 
 class Nav extends React.Component {
   render() {
     return (
       <nav className="navContainer">
-        <div class="navWrapper">
+        <div className="navWrapper">
           <div className="mainLogo">
             <span>westagram</span>
           </div>
@@ -37,5 +32,4 @@ class Nav extends React.Component {
   }
 }
 
->>>>>>> master
 export default Nav;

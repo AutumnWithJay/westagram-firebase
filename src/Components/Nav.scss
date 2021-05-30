@@ -1,86 +1,88 @@
 @import '../styles/_variables.scss';
 
-.navContainer {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 60px;
-  background-color: var(--nav_background_color);
-  border-bottom: 1px solid var(--nav_border_bottom-color);
-  z-index: 2;
+.ParkJoonWoo {
+  .navContainer {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    background-color: var(--nav_background_color);
+    border-bottom: 1px solid var(--nav_border_bottom-color);
+    z-index: 2;
 
-  .navWrapper {
-    @include flexSet(row, space-between, center);
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 30px;
+    .navWrapper {
+      @include flexSet(row, space-between, center);
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 30px;
 
-    .mainLogo {
-      margin-top: 10px;
+      .mainLogo {
+        margin-top: 10px;
 
-      span {
-        font-size: 30px;
-        font-family: 'Lobster';
-      }
-    }
-
-    .searchWrapper {
-      position: relative;
-      margin-top: 15px;
-
-      .search {
-        width: 200px;
-        height: 25px;
-        background-color: var(--nav_input_background_color);
-        border: 1px solid var(--nav_input_border_color);
-        border-radius: 3px;
-        outline: none;
-
-        &::placeholder {
-          text-align: center;
-          color: #c7c7c7;
+        span {
+          font-size: 30px;
+          font-family: 'Lobster';
         }
       }
 
-      i {
-        position: absolute;
-        left: 70px;
-        color: var(--nav_i_color);
-        font-size: 13px;
-        margin-top: 8px;
-      }
+      .searchWrapper {
+        position: relative;
+        margin-top: 15px;
 
-      &:focus-within {
-        input {
-          padding-left: 23px;
+        .search {
+          width: 200px;
+          height: 25px;
+          background-color: var(--nav_input_background_color);
+          border: 1px solid var(--nav_input_border_color);
+          border-radius: 3px;
+          outline: none;
 
           &::placeholder {
-            color: transparent;
+            text-align: center;
+            color: #c7c7c7;
           }
         }
+
         i {
-          left: 8px;
+          position: absolute;
+          left: 70px;
+          color: var(--nav_i_color);
+          font-size: 13px;
+          margin-top: 8px;
+        }
+
+        &:focus-within {
+          input {
+            padding-left: 23px;
+
+            &::placeholder {
+              color: transparent;
+            }
+          }
+          i {
+            left: 8px;
+          }
         }
       }
-    }
 
-    .iconWrapper {
-      @include flexSet(row, space-between, center);
-      width: 200px;
-      margin-top: 15px;
+      .iconWrapper {
+        @include flexSet(row, space-between, center);
+        width: 200px;
+        margin-top: 15px;
 
-      img {
-        width: 24px;
-      }
+        img {
+          width: 24px;
+        }
 
-      .myProfile {
-        border-radius: 50%;
+        .myProfile {
+          border-radius: 50%;
+        }
       }
     }
   }
 }
 
-@include mobile {
+@media (max-width: 640px) {
   .search {
     display: none;
   }
