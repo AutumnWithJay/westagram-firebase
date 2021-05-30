@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { authService } from '../../../firebase';
 import './Register.scss';
 
 class Register extends React.Component {
@@ -10,7 +11,7 @@ class Register extends React.Component {
       inputName: '',
       inputNickname: '',
       inputPassword: '',
-      isDisabled: true,
+      isDisabled: false,
     };
   }
 
@@ -18,10 +19,40 @@ class Register extends React.Component {
     const {
       target: { name, value },
     } = e;
-    this.setState({
-      [name]: value,
-    });
+    this.setState(
+      {
+        [name]: value,
+      },
+      () => {
+        this.onChange();
+      }
+    );
   };
+
+  onClick = async () => {
+    const { inputId, inputPassword } = this.state;
+    try {
+      const data = authService.createUserWithEmailAndPassword(
+        inputId,
+        inputPassword
+      );
+      console.log(data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  onChange = () => {
+    const { inputId, inputName, inputNickname, inputPassword } = this.state;
+    if (
+      (inputId.includes('@') && inputName,
+      inputNickname,
+      inputPassword.length > 5)
+    ) {
+      this.setState({ isDisabled: true });
+    }
+  };
+
   render() {
     return (
       <div className="JoonWooPark_Register">
@@ -66,18 +97,14 @@ class Register extends React.Component {
               minLength="5"
             />
 
-            <Link
-              to="/main-joon"
-              className={
-                this.state.isDisabled ? 'link-button' : 'link-button active'
-              }
-            >
+            <Link to="/">
               <button
                 className={
                   this.state.isDisabled
-                    ? 'register-button'
-                    : 'register-button active'
+                    ? 'register-button active'
+                    : 'register-button'
                 }
+                onClick={this.onClick}
               >
                 가입
               </button>
@@ -85,7 +112,7 @@ class Register extends React.Component {
           </section>
           <section className="login-container">
             <p>계정이 있으신가요?</p>
-            <Link to="/register">로그인</Link>
+            <Link to="/">로그인</Link>
           </section>
           <section className="mobile-download-container">
             <p>앱을 다운로드하세요.</p>
