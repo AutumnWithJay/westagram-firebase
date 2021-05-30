@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import { authService } from '../../../firebase';
 import './Login.scss';
 
 class Login extends React.Component {
@@ -9,6 +10,7 @@ class Login extends React.Component {
       inputId: '',
       inputPassword: '',
       isDisabled: true,
+      redirect: false,
     };
   }
 
@@ -30,9 +32,31 @@ class Login extends React.Component {
       : this.setState({ isDisabled: true });
   };
 
+  validEmailPassword = () => {
+    const { inputId, inputPassword } = this.state;
+    authService
+      .signInWithEmailAndPassword(inputId, inputPassword)
+      .then(res => this.setState({ redirect: true }))
+      .catch(
+        err => {
+          console.log(err.message);
+        },
+        () => {
+          this.renderRedirect();
+        }
+      );
+  };
+
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to="/main" />;
+    }
+  };
+
   render() {
     return (
       <div className="JoonWooPark">
+        {this.renderRedirect()}
         <main>
           <section className="login-container">
             <h3 className="login-title">Westagram</h3>
@@ -52,28 +76,22 @@ class Login extends React.Component {
               onChange={e => this.handleInput(e)}
             />
 
-            <Link
-              to="/main-joon"
+            <button
               className={
-                this.state.isDisabled ? 'link-button' : 'link-button active'
+                this.state.isDisabled ? 'login-button' : 'login-button active'
               }
+              onClick={this.validEmailPassword}
             >
-              <button
-                className={
-                  this.state.isDisabled ? 'login-button' : 'login-button active'
-                }
-              >
-                로그인
-              </button>
-            </Link>
+              로그인
+            </button>
+
             <div className="login-divide">
               <div className="login-divide-line-first"></div>
               <div className="login-divide-text">또는</div>
               <div className="login-divide-line-second"></div>
             </div>
             <a href="/" className="login-social-app">
-              <i className="fab fa-facebook-square"></i>
-              Facebook으로 로그인
+              Google으로 로그인
             </a>
             <a href="/" className="login-forget-password">
               비밀번호를 잊으셨나요?
