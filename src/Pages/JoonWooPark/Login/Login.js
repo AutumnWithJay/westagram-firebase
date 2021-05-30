@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import firebase from 'firebase';
 import { authService } from '../../../firebase';
 import './Login.scss';
 
@@ -11,6 +12,7 @@ class Login extends React.Component {
       inputPassword: '',
       isDisabled: true,
       redirect: false,
+      loginError: false,
     };
   }
 
@@ -45,6 +47,17 @@ class Login extends React.Component {
           this.renderRedirect();
         }
       );
+  };
+
+  validGoogleAccount = () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    authService
+      .signInWithPopup(provider)
+      .then(res => {
+        console.log(res);
+        this.setState({ redirect: true });
+      })
+      .catch(err => console.log(err));
   };
 
   renderRedirect = () => {
@@ -90,9 +103,12 @@ class Login extends React.Component {
               <div className="login-divide-text">또는</div>
               <div className="login-divide-line-second"></div>
             </div>
-            <a href="/" className="login-social-app">
+            <span
+              className="login-social-app"
+              onClick={this.validGoogleAccount}
+            >
               Google으로 로그인
-            </a>
+            </span>
             <a href="/" className="login-forget-password">
               비밀번호를 잊으셨나요?
             </a>
