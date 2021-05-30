@@ -4,13 +4,13 @@ body {
   background-color: var(--all_background_color);
 }
 
-.JoonWooPark {
+.JoonWooPark_Register {
   main {
     @include flexSet(column, center, center);
     font-size: 12px;
   }
 
-  .login-container {
+  .register-container {
     @include flexSet(column, flex-start, center);
     width: 23rem;
     margin: 3rem 0 0.5rem 0;
@@ -18,7 +18,7 @@ body {
     background-color: var(--all_section_background_color);
   }
 
-  .login-title {
+  .register-title {
     margin: 2rem 0;
     font-size: 2.5rem;
     font-family: 'Lobster', cursive;
@@ -28,17 +28,14 @@ body {
     width: 18rem;
     height: 2.5rem;
     padding-left: 1rem;
+    margin-top: 0.4rem;
     border: 1px solid var(--login_input_border_color);
     border-radius: 0.3rem;
     background-color: var(--login_input_background_color);
     font-size: 0.7rem;
   }
 
-  .login-id {
-    margin-bottom: 0.5rem;
-  }
-
-  .login-button {
+  .register-button {
     width: 19rem;
     height: 2.5rem;
     margin: 1rem;
@@ -51,7 +48,7 @@ body {
     cursor: not-allowed;
   }
 
-  .login-button.active {
+  .register-button.active {
     background-color: #0095f6;
     cursor: pointer;
   }
@@ -65,21 +62,21 @@ body {
     pointer-events: all;
   }
 
-  .login-divide {
+  .register-divide {
     @include flexSet(row, space-between, center);
     width: 19rem;
     margin-bottom: 1rem;
     color: var(--login_divide_font_color);
 
-    .login-divide-line-first,
-    .login-divide-line-second {
+    .register-divide-line-first,
+    .register-divide-line-second {
       width: 40%;
       border: 1px solid var(--login_divide_line_color);
     }
   }
 
-  .login-social-app,
-  .login-forget-password {
+  .register-social-app,
+  .register-forget-password {
     margin: 0.5rem;
     color: var(--login_facebook_text_color);
     font-size: 1.1rem;
@@ -87,12 +84,12 @@ body {
     text-decoration: none;
   }
 
-  .login-forget-password {
+  .register-forget-password {
     font-size: 0.7rem;
     margin-bottom: 1rem;
   }
 
-  .register-container {
+  .login-container {
     @include flexSet(row, center, center);
     margin: 0.5rem 0;
     width: 23rem;

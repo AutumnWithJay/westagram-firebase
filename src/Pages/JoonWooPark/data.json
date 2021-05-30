@@ -1,0 +1,38 @@
+[
+  {
+    "id": "wecode_bootcamp",
+    "img_url": "/images/JoonWooPark/profile/wecode.png"
+  },
+  {
+    "id": "wecode_socialclub",
+    "img_url": "./images/JoonWooPark/profile/wecode_social.png"
+  },
+  {
+    "id": "stlouis_cardinals",
+    "img_url": "./images/JoonWooPark/profile/cardinals.png"
+  },
+  {
+    "id": "kiwoom_official",
+    "img_url": "./images/JoonWooPark/profile/kiwoom.jpeg"
+  },
+  {
+    "id": "seoul_artcenter",
+    "img_url": "./images/JoonWooPark/profile/seoul_artmuseum.jpeg"
+  },
+  {
+    "id": "annonymous_dev",
+    "img_url": "./images/JoonWooPark/profile/avatar.png"
+  },
+  {
+    "id": "collie",
+    "img_url": "./images/JoonWooPark/profile/collie.jpeg"
+  },
+  {
+    "id": "meow_cat",
+    "img_url": "./images/JoonWooPark/profile/persian_cat.png"
+  },
+  {
+    "id": "waino_official",
+    "img_url": "./images/JoonWooPark/profile/waino.jpg"
+  }
+]

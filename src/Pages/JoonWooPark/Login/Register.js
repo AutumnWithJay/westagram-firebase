@@ -1,55 +1,69 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Login.scss';
+import './Register.scss';
 
-class Login extends React.Component {
+class Register extends React.Component {
   constructor() {
     super();
     this.state = {
       inputId: '',
+      inputName: '',
+      inputNickname: '',
       inputPassword: '',
       isDisabled: true,
     };
   }
 
   handleInput = e => {
-    this.setState(
-      {
-        [e.target.name]: e.target.value,
-      },
-      () => {
-        this.validLoginButton();
-      }
-    );
+    const {
+      target: { name, value },
+    } = e;
+    this.setState({
+      [name]: value,
+    });
   };
-
-  validLoginButton = () => {
-    const { inputId, inputPassword } = this.state;
-    inputId.includes('@') && inputPassword.length >= 5
-      ? this.setState({ isDisabled: false })
-      : this.setState({ isDisabled: true });
-  };
-
   render() {
     return (
-      <div className="JoonWooPark">
+      <div className="JoonWooPark_Register">
         <main>
-          <section className="login-container">
-            <h3 className="login-title">Westagram</h3>
+          <section className="register-container">
+            <h3 className="register-title">Westagram</h3>
+            <span>친구들의 사진과 동영상을 보려면 가입하세요.</span>
+            <button className="register-button active">Google로 로그인</button>
+            <div className="register-divide">
+              <div className="register-divide-line-first"></div>
+              <div className="register-divide-text">또는</div>
+              <div className="register-divide-line-second"></div>
+            </div>
             <input
-              className="login-id"
+              className="register-id"
               type="text"
-              placeholder="전화번호, 사용자 이름 또는 이메일"
+              placeholder="이메일 주소를 입력해주세요"
               name="inputId"
               autoFocus
               onChange={e => this.handleInput(e)}
             />
             <input
-              className="login-password"
+              className="register-name"
+              type="text"
+              placeholder="성명"
+              name="inputName"
+              onChange={e => this.handleInput(e)}
+            />
+            <input
+              className="register-nickname"
+              type="text"
+              placeholder="사용자 이름"
+              name="inputNickname"
+              onChange={e => this.handleInput(e)}
+            />
+            <input
+              className="register-password"
               type="password"
               placeholder="비밀번호"
               name="inputPassword"
               onChange={e => this.handleInput(e)}
+              minLength="5"
             />
 
             <Link
@@ -60,28 +74,18 @@ class Login extends React.Component {
             >
               <button
                 className={
-                  this.state.isDisabled ? 'login-button' : 'login-button active'
+                  this.state.isDisabled
+                    ? 'register-button'
+                    : 'register-button active'
                 }
               >
-                로그인
+                가입
               </button>
             </Link>
-            <div className="login-divide">
-              <div className="login-divide-line-first"></div>
-              <div className="login-divide-text">또는</div>
-              <div className="login-divide-line-second"></div>
-            </div>
-            <a href="/" className="login-social-app">
-              <i className="fab fa-facebook-square"></i>
-              Facebook으로 로그인
-            </a>
-            <a href="/" className="login-forget-password">
-              비밀번호를 잊으셨나요?
-            </a>
           </section>
-          <section className="register-container">
-            <p>계정이 없으신가요?</p>
-            <Link to="/register">가입하기</Link>
+          <section className="login-container">
+            <p>계정이 있으신가요?</p>
+            <Link to="/register">로그인</Link>
           </section>
           <section className="mobile-download-container">
             <p>앱을 다운로드하세요.</p>
@@ -124,4 +128,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default Register;
