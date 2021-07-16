@@ -4,12 +4,10 @@
 
 ### Firebase
 
-- [ ] Connect with Westagram
-- [ ] Create Firestore
-- [ ] Make Collection with Code
+- [x] Connect with Westagram
+- [x] Create Firestore
 
 ### Login Page
 
-- [ ] Register Page Layout
-- [ ] Add User data in firebase
-- [ ] Authenticate User Data
+- [x] Register Page Layout
+- [x] Add User data in firebase
